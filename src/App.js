@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import data from "./data";
+import Contest from "./Contest.js";
 
 function App() {
+
+  let content = data.map((contest) => Contest({ ...contest, notify: true }));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Contest Calendar</h1>
+
+      <main>
+        <aside>
+          <img src="images/chef.png" alt="code" />
+          <img src="images/google.png" alt="code" />
+          <img src="images/leetcode.png" alt="code" />
+          <img src="images/hackerrank.png" alt="code" />
+          <img src="images/codeforces.png" alt="code" />
+          <img src="images/hackerearth.png" alt="code" />
+          <img src="images/atcoder.png" alt="code" />
+        </aside>
+
+        <section id="display">
+          {content}
+        </section>
+      </main>
     </div>
   );
 }
