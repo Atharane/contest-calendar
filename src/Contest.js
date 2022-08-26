@@ -1,22 +1,20 @@
 function App(props) {
-  const url = new URL(props.url);
-  const platform = url.hostname.split(".")[1];
-  console.log(platform)
+  let platform_logo = "images/code.png";
 
-  const platform_logos = {
-    "codechef": "images/chef.png",
-    "withgoogle": "images/google.png",
-    "leetcode": "images/leetcode.png",
-    "hackerrank": "images/hackerrank.png",
-    "codeforces": "images/codeforces.png",
-    "hackerearth": "images/hackerearth.png",
-    "jp": "images/atcoder.png",
-  }
-
-  let platform_logo = platform_logos[platform];
-
-  if (!platform_logo) {
+  if (props.url.includes("hackerearth")) {
+    platform_logo = "images/hackerearth.png";
+  } else if (props.url.includes("hackerrank")) {
+    platform_logo = "images/hackerrank.png";
+  } else if (props.url.includes("codeforces")) {
     platform_logo = "images/codeforces.png";
+  } else if (props.url.includes("codechef")) {
+    platform_logo = "images/chef.png";
+  } else if (props.url.includes("atcoder")) {
+    platform_logo = "images/atcoder.png";
+  } else if (props.url.includes("leetcode")) {
+    platform_logo = "images/leetcode.png";
+  } else if (props.url.includes("withgoogle")) {
+    platform_logo = "images/google.png";
   }
 
   return (
@@ -27,7 +25,6 @@ function App(props) {
 
         <div className="datetime">
           <span> {props.start_time} </span>
-          {/* <span> 8:00:00 PM </span> */}
           <span className="time"> 8:00:00 PM </span>
         </div>
       </div>
