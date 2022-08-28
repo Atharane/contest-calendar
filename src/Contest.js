@@ -1,3 +1,5 @@
+import React from "react";
+
 function App(props) {
   let platform_logo = "images/code.png";
 
@@ -29,6 +31,7 @@ function App(props) {
         </div>
       </div>
       <img
+        onClick={() => props.notifyUser(props.id)}
         className="bell"
         src={props.notify ? "images/active_bell.png" : "images/bell.png"}
         alt="bell"
