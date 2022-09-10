@@ -1,16 +1,54 @@
 import React from "react";
-
-import data from "./data";
 import Contest from "./Contest.js";
 
 function App() {
   // covert the api data into preffered data
-  const [contestData, setContestData] = React.useState(
-    data.map((contest) => {
-      contest.notify = false;
-      return contest;
-    })
-  );
+  const [contestData, setContestData] = React.useState([
+    {
+      name: "reinvent",
+      url: "https://www.hackerearth.com/challenges/hackathon/cheggs-hackathon/",
+      start_time: "2022-09-12T14:35:00.000Z",
+      end_time: "2022-10-02T18:25:00.000Z",
+      duration: "1403700.0",
+      site: "HackerEarth",
+      in_24_hours: "No",
+      status: "BEFORE",
+      notify: false,
+    },
+    {
+      name: "estie Programming Contest 2022 (AtCoder Heuristic Contest 014)",
+      url: "https://atcoder.jp/contests/ahc014",
+      start_time: "2022-09-17T06:00:00.000Z",
+      end_time: "2022-10-01T10:00:00.000Z",
+      duration: "1224000",
+      site: "AtCoder",
+      in_24_hours: "No",
+      status: "BEFORE",
+      notify: false,
+    },
+    {
+      name: "UNICORN Programming Contest 2022(AtCoder Beginner Contest 269)",
+      url: "https://atcoder.jp/contests/abc269",
+      start_time: "2022-09-17T12:00:00.000Z",
+      end_time: "2022-09-17T13:40:00.000Z",
+      duration: "6000",
+      site: "AtCoder",
+      in_24_hours: "No",
+      status: "BEFORE",
+      notify: false,
+    },
+  ]);
+
+  // fetch("https://kontests.net/api/v1/all")
+  //   .then((res) => res.json())
+  //   .then((data) =>
+  //     setContestData(
+  //       data.map((contest) => {
+  //         contest.notify = false;
+  //         return contest;
+  //       })
+  //     )
+  //   );
 
   // switch state of notify property of clicked contest
   function addToList(id) {
@@ -28,7 +66,7 @@ function App() {
       ...contest,
       id: contest.name,
       key: contest.start_time,
-      notifyUser: addToList,
+      onClickHandler: () => addToList(contest.name),
     })
   );
 

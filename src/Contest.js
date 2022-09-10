@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 function App(props) {
   let platform_logo = "images/code.png";
@@ -26,12 +27,18 @@ function App(props) {
         <a href={props.url}>{props.name}</a>
 
         <div className="datetime">
-          <span> {props.start_time} </span>
-          <span className="time"> 8:00:00 PM </span>
+          <span>
+            {moment.utc(props.start_time).format("MMM Do, YYYY, dddd")}{" "}
+          </span>
+
+          <span className="time">
+            {moment.utc(props.start_time).format("HH:mm")}
+          </span>
+          
         </div>
       </div>
       <img
-        onClick={() => props.notifyUser(props.id)}
+        onClick={props.onClickHandler}
         className="bell"
         src={props.notify ? "images/active_bell.png" : "images/bell.png"}
         alt="bell"
