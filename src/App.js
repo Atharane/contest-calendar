@@ -2,7 +2,7 @@ import React from "react";
 import Contest from "./Contest.js";
 
 function App() {
-  // covert the api data into preffered data
+
   const [contestData, setContestData] = React.useState([
     {
       name: "reinvent",
@@ -16,7 +16,7 @@ function App() {
       notify: false,
     },
     {
-      name: "estie Programming Contest 2022 (AtCoder Heuristic Contest 014)",
+      name: "Bestie Programming Contest 2022 (AtCoder Heuristic Contest 014)",
       url: "https://atcoder.jp/contests/ahc014",
       start_time: "2022-09-17T06:00:00.000Z",
       end_time: "2022-10-01T10:00:00.000Z",
@@ -87,6 +87,22 @@ function App() {
 
         <section id="display">{content}</section>
       </main>
+
+      <footer>
+        <a href="#"> 
+          <img src="images/google.png" alt="site" />
+        </a>
+        <a href="#"> 
+          <img src="images/bug.png" alt="bug" />
+        </a>
+        <a href="#"> 
+          <img src="images/collaboration.png" alt="collab" />
+        </a>
+        <a href="#"> 
+          <img src="images/source.png" alt="source code" />
+        </a>  
+      </footer>
+
     </div>
   );
 }

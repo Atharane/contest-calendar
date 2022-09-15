@@ -108,3 +108,19 @@ aside > img {
   margin-left: auto;
   width: 20px;
 }
+
+footer{
+  width: 422px;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  border-radius: 5px;
+  padding: 0 6px;
+  background: #0f212e;
+}
+
+footer img{
+  width: 18px;
+  align-self: center;
+  margin: 6px;
+}
