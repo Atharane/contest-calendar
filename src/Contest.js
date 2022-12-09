@@ -1,22 +1,22 @@
 import React from "react";
 import moment from "moment";
 
-function App(props) {
+function App({ contest, onClickHandler }) {
   let platform_logo = "images/code.png";
 
-  if (props.url.includes("hackerearth")) {
+  if (contest.url.includes("hackerearth")) {
     platform_logo = "images/hackerearth.png";
-  } else if (props.url.includes("hackerrank")) {
+  } else if (contest.url.includes("hackerrank")) {
     platform_logo = "images/hackerrank.png";
-  } else if (props.url.includes("codeforces")) {
+  } else if (contest.url.includes("codeforces")) {
     platform_logo = "images/codeforces.png";
-  } else if (props.url.includes("codechef")) {
+  } else if (contest.url.includes("codechef")) {
     platform_logo = "images/chef.png";
-  } else if (props.url.includes("atcoder")) {
+  } else if (contest.url.includes("atcoder")) {
     platform_logo = "images/atcoder.png";
-  } else if (props.url.includes("leetcode")) {
+  } else if (contest.url.includes("leetcode")) {
     platform_logo = "images/leetcode.png";
-  } else if (props.url.includes("withgoogle")) {
+  } else if (contest.url.includes("withgoogle")) {
     platform_logo = "images/google.png";
   }
 
@@ -24,23 +24,23 @@ function App(props) {
     <div className="contest">
       <img className="platform" src={platform_logo} alt="bell" />
       <div className="details">
-        <a href={props.url}>{props.name}</a>
+        <a href={contest.url}>{contest.name}</a>
 
         <div className="datetime">
           <span>
-            {moment.utc(props.start_time).format("MMM Do, YYYY, dddd")}{" "}
+            {moment.utc(contest.start_time).format("MMM Do, YYYY, dddd")}{" "}
           </span>
 
           <span className="time">
-            {moment.utc(props.start_time).format("HH:mm")}
+            {moment.utc(contest.start_time).format("HH:mm")}
           </span>
           
         </div>
       </div>
       <img
-        onClick={props.onClickHandler}
+        onClick={onClickHandler}
         className="bell"
-        src={props.notify ? "images/active_bell.png" : "images/bell.png"}
+        src={contest.notify ? "images/active_bell.png" : "images/bell.png"}
         alt="bell"
       />
     </div>
