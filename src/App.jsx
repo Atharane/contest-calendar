@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
-import Contest from "./Contest.js";
+import Contest from "./Contest";
+
+import HackerRank from "./assets/hackerrank.png";
+import HackerEarth from "./assets/hackerearth.png";
+import CodeChef from "./assets/chef.png";
+import CodeForces from "./assets/codeforces.png";
+import AtCoder from "./assets/atcoder.png";
+import LeetCode from "./assets/leetcode.png";
+import Google from "./assets/google.png";
+import Code from "./assets/code.png";
+
 
 function App() {
   const [contestData, setContestData] = React.useState([]);
@@ -17,13 +27,14 @@ function App() {
 
   // switch state of notify property of clicked contest
   function toggleNotify(id) {
-    setContestData((prevTable) => {
-      return prevTable.map((contest) => {
-        return contest.name === id
-          ? { ...contest, notify: !contest.notify }
-          : contest;
-      });
-    });
+    // setContestData((prevTable) => {
+    //   return prevTable.map((contest) => {
+    //     return contest.name === id
+    //       ? { ...contest, notify: !contest.notify }
+    //       : contest;
+    //   });
+    // });
+    console.log(id);
   }
 
   let content = contestData.map((contest) => (
@@ -38,13 +49,13 @@ function App() {
 
       <main>
         <aside>
-          <img src="images/chef.png" alt="code" />
-          <img src="images/google.png" alt="code" />
-          <img src="images/leetcode.png" alt="code" />
-          <img src="images/hackerrank.png" alt="code" />
-          <img src="images/codeforces.png" alt="code" />
-          <img src="images/hackerearth.png" alt="code" />
-          <img src="images/atcoder.png" alt="code" />
+          <img src={CodeChef} alt="codechef" />
+          <img src={Google} alt="google" />
+          <img src={LeetCode} alt="leetcode" />
+          <img src={HackerRank} alt="hackerrank" />
+          <img src={CodeForces} alt="codeforces" />
+          <img src={HackerEarth} alt="hackerearth" />
+          <img src={AtCoder} alt="atcoder" />
         </aside>
 
         <section id="display">{content}</section>
@@ -61,7 +72,7 @@ function App() {
           <img src="images/collaboration.png" alt="collab" />
         </a>
         <a href="#">
-          <img src="images/source.png" alt="source code" />
+          <img src="images/source.png" alt={Code} />
         </a>
       </footer>
     </div>

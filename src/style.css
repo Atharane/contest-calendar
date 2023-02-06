@@ -16,7 +16,9 @@ html{
 
 body {
   font-family: "Karla", sans-serif;
-  min-width: 436px;
+  width: 436px;
+  height: fit-content;
+  outline: 2px solid #3d8bc3;
   padding-bottom: 8px;
   height: fit-content;
   border-radius: 10px;
