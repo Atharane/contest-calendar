@@ -94,8 +94,8 @@ aside > img {
   padding-top: 8px;
 }
 
-.datetime > .time {
-  margin-left: 10px;
+.datetime > .separator {
+  margin: 0 6px;
 }
 
 .platform {
@@ -116,6 +116,7 @@ footer{
   display: flex;
   align-items: center;
   margin: 10px auto;
+  margin-bottom: 0;
   border-radius: 5px;
   padding: 0 6px;
   background: #0f212e;

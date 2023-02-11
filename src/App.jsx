@@ -76,6 +76,7 @@ function App() {
         <a href="#">
           <img src={Code} alt="code" />
         </a>
+        Copyright (c) 2023 Atharva Rane
       </footer>
     </div>
   );

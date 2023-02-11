@@ -31,6 +31,26 @@ function App({ contest, onClickHandler }) {
     platform_logo = Google;
   }
 
+  function convertTo12HourFormat(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return "Invalid date";
+    }
+    const options = {
+      timeZone: "Asia/Kolkata",
+      day: "numeric",
+      month: "short",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+      date
+    );
+    return formattedDate.replace(" ", ", ");
+  }
+
+
   return (
     <div className="contest">
       <img className="platform" src={platform_logo} alt="bell" />
@@ -38,15 +58,11 @@ function App({ contest, onClickHandler }) {
         <a href={contest.url}>{contest.name}</a>
 
         <div className="datetime">
-          <span>
-            {/* {moment.utc(contest.start_time).format("MMM Do, YYYY, dddd")}{" "} */}
-            {contest.start_time}
-          </span>
+          <span>{convertTo24HourFormat(contest.start_time)}</span>
 
-          <span className="time">
-            {/* {moment.utc(contest.start_time).format("HH:mm")} */}
-            {contest.start_time}
-          </span>
+          <span className="separator">⇀</span>
+
+          <span>{convertTo24HourFormat(contest.end_time)}</span>
         </div>
       </div>
       <img
