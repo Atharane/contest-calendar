@@ -34,7 +34,7 @@ function App({ contest, onClickHandler }) {
   function convertTo12HourFormat(dateString) {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      return "Invalid date";
+      return dateString;
     }
     const options = {
       timeZone: "Asia/Kolkata",
@@ -50,6 +50,9 @@ function App({ contest, onClickHandler }) {
     return formattedDate.replace(" ", ", ");
   }
 
+  function isLive(start_time, end_time) {
+    
+  }
 
   return (
     <div className="contest">
