@@ -58,11 +58,11 @@ function App({ contest, onClickHandler }) {
         <a href={contest.url}>{contest.name}</a>
 
         <div className="datetime">
-          <span>{convertTo24HourFormat(contest.start_time)}</span>
+          <span>{convertTo12HourFormat(contest.start_time)}</span>
 
           <span className="separator">⇀</span>
 
-          <span>{convertTo24HourFormat(contest.end_time)}</span>
+          <span>{convertTo12HourFormat(contest.end_time)}</span>
         </div>
       </div>
       <img
