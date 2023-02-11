@@ -9,6 +9,8 @@ import AtCoder from "./assets/atcoder.png";
 import LeetCode from "./assets/leetcode.png";
 import Google from "./assets/google.png";
 import Code from "./assets/code.png";
+import Bug from "./assets/bug.png";
+import Collab from "./assets/collaboration.png";
 
 
 function App() {
@@ -63,16 +65,16 @@ function App() {
 
       <footer>
         <a href="#">
-          <img src="images/google.png" alt="site" />
+          <img src={Google} alt="site" />
         </a>
         <a href="#">
-          <img src="images/bug.png" alt="bug" />
+          <img src={Bug} alt="bug" />
         </a>
         <a href="#">
-          <img src="images/collaboration.png" alt="collab" />
+          <img src={Collab} alt="collab" />
         </a>
         <a href="#">
-          <img src="images/source.png" alt={Code} />
+          <img src={Code} alt="code" />
         </a>
       </footer>
     </div>
