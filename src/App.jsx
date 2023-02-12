@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Contest from "./Contest";
 
+import "./loader.css";
 import HackerRank from "./assets/hackerrank.png";
 import HackerEarth from "./assets/hackerearth.png";
 import CodeChef from "./assets/chef.png";
@@ -12,6 +13,33 @@ import Google from "./assets/google.png";
 import Code from "./assets/code.png";
 import Bug from "./assets/bug.png";
 import Collaborate from "./assets/collaboration.png";
+
+function Loader() {
+  return (
+    <div
+      aria-label="Orange and tan hamster running in a metal wheel"
+      role="img"
+      class="wheel-and-hamster"
+    >
+      <div class="wheel"></div>
+      <div class="hamster">
+        <div class="hamster__body">
+          <div class="hamster__head">
+            <div class="hamster__ear"></div>
+            <div class="hamster__eye"></div>
+            <div class="hamster__nose"></div>
+          </div>
+          <div class="hamster__limb hamster__limb--fr"></div>
+          <div class="hamster__limb hamster__limb--fl"></div>
+          <div class="hamster__limb hamster__limb--br"></div>
+          <div class="hamster__limb hamster__limb--bl"></div>
+          <div class="hamster__tail"></div>
+        </div>
+      </div>
+      <div class="spoke"></div>
+    </div>
+  );
+}
 
 function App() {
   const [contestData, setContestData] = useState([]);
@@ -26,11 +54,9 @@ function App() {
           contest.id = nanoid();
         });
         setContestData(data);
+        console.log(data);
       });
   }, []);
-
-  // log name of all contest who have notify: true
-  console.log(contestData.filter((contest) => contest.notify === true));
 
   // switch state of notify property of clicked contest
   function toggleNotify(id) {
@@ -69,7 +95,9 @@ function App() {
           <img src={AtCoder} alt="atcoder" />
         </aside>
 
-        <section id="display">{content}</section>
+        <section id="display">{
+          content.length>0 ? content : <Loader />
+        }</section>
       </main>
 
       <footer>
