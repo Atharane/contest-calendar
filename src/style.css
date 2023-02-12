@@ -66,7 +66,7 @@ aside > img {
 .contest {
   display: flex;
   width: 370px;
-  padding: 6px 12px;
+  padding: 6px 8px 6px 10px;
   background: #213743;
   margin-bottom: 12px;
   border-radius: 5px;
@@ -109,6 +109,25 @@ aside > img {
 
 .datetime > .separator {
   margin: 0 6px;
+}
+
+.live{
+  align-self: center;
+  margin-left: auto;
+  height: 40px;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .bell {

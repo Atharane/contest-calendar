@@ -35,24 +35,6 @@ function App({ contest, onClickHandler }) {
     return sites[site];
   }
 
-  let platform_logo = "images/code.png";
-
-  if (contest.url.includes("hackerearth")) {
-    platform_logo = HackerEarth;
-  } else if (contest.url.includes("hackerrank")) {
-    platform_logo = HackerRank;
-  } else if (contest.url.includes("codeforces")) {
-    platform_logo = CodeForces;
-  } else if (contest.url.includes("codechef")) {
-    platform_logo = CodeChef;
-  } else if (contest.url.includes("atcoder")) {
-    platform_logo = AtCoder;
-  } else if (contest.url.includes("leetcode")) {
-    platform_logo = LeetCode;
-  } else if (contest.url.includes("withgoogle")) {
-    platform_logo = Google;
-  }
-
   function convertTo12HourFormat(dateString) {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
@@ -95,12 +77,16 @@ function App({ contest, onClickHandler }) {
         </div>
       </div>
 
-      <img
-        onClick={onClickHandler}
-        className="bell"
-        src={contest.notify ? ActiveBell : InactiveBell}
-        alt="bell"
-      />
+      {contest.status === "CODING" ? (
+        <img className="live" src={Live} alt="live" />
+      ) : (
+        <img
+          onClick={onClickHandler}
+          className="bell"
+          src={contest.notify ? ActiveBell : InactiveBell}
+          alt="bell"
+        />
+      )}
     </div>
   );
 }

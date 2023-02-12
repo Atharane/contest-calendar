@@ -85,7 +85,7 @@ function App() {
         <a href="atharane.biz" target="_blank">
           <img src={Code} alt="code" />
         </a>
-        Copyright (c) 2023 Atharva Rane
+        {/* Copyright (c) 2023 Atharva Rane */}
       </footer>
     </div>
   );
