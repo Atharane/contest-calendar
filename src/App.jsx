@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import Contest from "./Contest";
 
 import HackerRank from "./assets/hackerrank.png";
@@ -10,16 +11,20 @@ import LeetCode from "./assets/leetcode.png";
 import Google from "./assets/google.png";
 import Code from "./assets/code.png";
 import Bug from "./assets/bug.png";
-import Collab from "./assets/collaboration.png";
-
+import Collaborate from "./assets/collaboration.png";
 
 function App() {
-  const [contestData, setContestData] = React.useState([]);
+  const [contestData, setContestData] = useState([]);
 
   useEffect(() => {
     fetch("https://kontests.net/api/v1/all")
       .then((response) => response.json())
       .then((data) => {
+        // add notify and id property to each contest
+        data.forEach((contest) => {
+          contest.notify = false;
+          contest.id = nanoid();
+        });
         setContestData(data);
       });
   }, []);
@@ -29,21 +34,25 @@ function App() {
 
   // switch state of notify property of clicked contest
   function toggleNotify(id) {
-    // setContestData((prevTable) => {
-    //   return prevTable.map((contest) => {
-    //     return contest.name === id
-    //       ? { ...contest, notify: !contest.notify }
-    //       : contest;
-    //   });
-    // });
+    setContestData((prevTable) => {
+      return prevTable.map((contest) => {
+        return contest.id === id
+          ? { ...contest, notify: !contest.notify }
+          : contest;
+      });
+    });
     console.log(id);
   }
 
   let content = contestData.map((contest) => (
-    <Contest contest={contest} onClickHandler={toggleNotify} />
+    <Contest
+      contest={contest}
+      onClickHandler={() => toggleNotify(contest.id)}
+      key={contest.id}
+    />
   ));
 
-  console.log('Page loaded')
+  console.log("Page loaded");
 
   return (
     <div className="App">
@@ -64,16 +73,16 @@ function App() {
       </main>
 
       <footer>
-        <a href="#">
+        <a href="atharane.biz" target="_blank">
           <img src={Google} alt="site" />
         </a>
-        <a href="#">
+        <a href="atharane.biz" target="_blank">
           <img src={Bug} alt="bug" />
         </a>
-        <a href="#">
-          <img src={Collab} alt="collab" />
+        <a href="atharane.biz" target="_blank">
+          <img src={Collaborate} alt="collaborate" />
         </a>
-        <a href="#">
+        <a href="atharane.biz" target="_blank">
           <img src={Code} alt="code" />
         </a>
         Copyright (c) 2023 Atharva Rane

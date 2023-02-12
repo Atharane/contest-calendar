@@ -1,5 +1,4 @@
 import React from "react";
-// import moment from "moment";
 
 import HackerRank from "./assets/hackerrank.png";
 import HackerEarth from "./assets/hackerearth.png";
@@ -8,11 +7,34 @@ import CodeForces from "./assets/codeforces.png";
 import AtCoder from "./assets/atcoder.png";
 import LeetCode from "./assets/leetcode.png";
 import Google from "./assets/google.png";
+import Code from "./assets/code.png";
 
 import ActiveBell from "./assets/active_bell.png";
 import InactiveBell from "./assets/bell.png";
+import Live from "./assets/live.png";
 
 function App({ contest, onClickHandler }) {
+  function extractPlatformName(url) {
+    const sites = {
+      hackerearth: HackerEarth,
+      hackerrank: HackerRank,
+      codeforces: CodeForces,
+      codechef: CodeChef,
+      atcoder: AtCoder,
+      leetcode: LeetCode,
+      withgoogle: Google,
+      default: Code,
+    };
+
+    let site = url.match(new RegExp(`${Object.keys(sites).join("|")}`));
+
+    if (site === null) {
+      site = "default";
+    }
+
+    return sites[site];
+  }
+
   let platform_logo = "images/code.png";
 
   if (contest.url.includes("hackerearth")) {
@@ -50,15 +72,19 @@ function App({ contest, onClickHandler }) {
     return formattedDate.replace(" ", ", ");
   }
 
-  function isLive(start_time, end_time) {
-    
-  }
+  function isLive(start_time, end_time) {}
 
   return (
     <div className="contest">
-      <img className="platform" src={platform_logo} alt="bell" />
-      <div className="details">
-        <a href={contest.url}>{contest.name}</a>
+      <img
+        className="contest--platform"
+        src={extractPlatformName(contest.url)}
+        alt="platform"
+      />
+      <div className="contest--details">
+        <a href={contest.url} className="contest--name">
+          {contest.name}
+        </a>
 
         <div className="datetime">
           <span>{convertTo12HourFormat(contest.start_time)}</span>
@@ -68,6 +94,7 @@ function App({ contest, onClickHandler }) {
           <span>{convertTo12HourFormat(contest.end_time)}</span>
         </div>
       </div>
+
       <img
         onClick={onClickHandler}
         className="bell"
