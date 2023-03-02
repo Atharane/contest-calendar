@@ -54,7 +54,28 @@ function App({ contest, onClickHandler }) {
     return formattedDate.replace(" ", ", ");
   }
 
-  function isLive(start_time, end_time) {}
+ function getGoogleCalendarLink(name, start_time_string, end_time_string, url) {
+   // Use regular expression to validate start_time and end_time strings
+   const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.000Z$/;
+   if (!regex.test(start_time_string) || !regex.test(end_time_string)) {
+     return "#"
+   }
+
+   // Create Date objects from start_time and end_time strings
+   const start_time = new Date(start_time_string);
+   const end_time = new Date(end_time_string);
+
+   // Format start_time and end_time to YYYYMMDDTHHmmssZ format
+   const startTimeFormatted = start_time
+     .toISOString()
+     .replace(/-|:|\.\d+/g, "");
+   const endTimeFormatted = end_time.toISOString().replace(/-|:|\.\d+/g, "");
+
+   // Create the Google Calendar API link
+   const link = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${name}&dates=${startTimeFormatted}/${endTimeFormatted}&details=${url}&location=&sf=true&output=xml`;
+
+   return link;
+ }
 
   return (
     <div className="contest">
@@ -80,12 +101,22 @@ function App({ contest, onClickHandler }) {
       {contest.status === "CODING" ? (
         <img className="live" src={Live} alt="live" />
       ) : (
-        <img
-          onClick={onClickHandler}
-          className="bell"
-          src={contest.notify ? ActiveBell : InactiveBell}
-          alt="bell"
-        />
+        <a
+          href={getGoogleCalendarLink(
+            contest.name,
+            contest.start_time,
+            contest.end_time,
+            contest.url
+            )}
+          target="_blank"
+        >
+          <img
+            // onClick={onClickHandler}
+            className="bell"
+            src={contest.notify ? ActiveBell : InactiveBell}
+            alt="bell"
+          />
+        </a>
       )}
     </div>
   );
