@@ -10,6 +10,7 @@
   --white: #ffffff;
 }
 
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +27,10 @@ body {
   background: var(--gunmetal);
   outline: 2px solid white; /* DEBUG */
   padding-bottom: 2px;
+}
+
+.App{
+  height: 430px; /* fixed height of the extension */
 }
 
 h1 {
@@ -54,17 +59,27 @@ aside {
 }
 
 aside > img {
-  width: 20px;
+  width: 26px;
   margin: 10px 0;
+  /* border: 2px solid yellow; */
+  background-color: var(--gunmetal-light);
+  padding: 4px;
+  border-radius: 20%;
+}
+
+/* select all even images */
+aside > img:nth-child(even) {
+    background-color: transparent;
+
 }
 
 #display {
-  max-height: 280px;
+  max-height: 320px;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
   width: 100%;
   min-height: 200px;
 }
@@ -72,11 +87,12 @@ aside > img {
 .contest {
   display: flex;
   width: 370px;
+  margin-left:auto;
   padding: 6px 8px 6px 10px;
-  background: #213743;
+  background: var(--gunmetal-light);
   margin-bottom: 12px;
   border-radius: 5px;
-  color: #ffffff;
+  color: var(--white);
   font-size: 14px;
 }
 
@@ -117,11 +133,14 @@ aside > img {
   margin: 0 6px;
 }
 
-.live{
+.live {
+  height: 40px;
+  animation: blink 2s linear infinite;
+}
+
+.contest--status {
   align-self: center;
   margin-left: auto;
-  height: 40px;
-  animation: blink 1s linear infinite;
 }
 
 @keyframes blink {
@@ -153,8 +172,20 @@ footer {
   background: var(--gunmetal-dark);
 }
 
+footer a{
+  font-size: 0px; /* MAKESHIFT to center the images inside it  */
+}
+
 footer img {
   width: 18px;
   align-self: center;
   margin: 6px;
+  opacity: 0.5;
+}
+
+footer p {
+  font-size: 14px;
+  color: rgba(83, 114, 136, 0.5);
+  margin-left: auto;
+  margin-right: 6px;
 }

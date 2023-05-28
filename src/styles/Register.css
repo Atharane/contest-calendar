@@ -1,0 +1,33 @@
+.register {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    /* remove default styling */
+    all: unset;
+    /* add custom styling */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+button{
+    all:unset;
+    margin-top: 14px;
+    padding: 4px 8px;
+    width: 300px;
+    background-color: #ac6666;
+    border-radius: 4px;
+    text-align: center;
+}

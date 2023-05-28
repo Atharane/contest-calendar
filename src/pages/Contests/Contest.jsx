@@ -1,20 +1,18 @@
-import React from "react";
+import HackerRank from "../../assets/hackerrank.png";
+import HackerEarth from "../../assets/hackerearth.png";
+import CodeChef from "../../assets/chef.png";
+import CodeForces from "../../assets/codeforces.png";
+import AtCoder from "../../assets/atcoder.png";
+import LeetCode from "../../assets/leetcode.png";
+import Google from "../../assets/google.png";
+import Code from "../../assets/code.png";
 
-import HackerRank from "./assets/hackerrank.png";
-import HackerEarth from "./assets/hackerearth.png";
-import CodeChef from "./assets/chef.png";
-import CodeForces from "./assets/codeforces.png";
-import AtCoder from "./assets/atcoder.png";
-import LeetCode from "./assets/leetcode.png";
-import Google from "./assets/google.png";
-import Code from "./assets/code.png";
+import ActiveBell from "../../assets/active_bell.png";
+import InactiveBell from "../../assets/bell.png";
+import Live from "../../assets/live.png";
 
-import ActiveBell from "./assets/active_bell.png";
-import InactiveBell from "./assets/bell.png";
-import Live from "./assets/live.png";
-
-function App({ contest, onClickHandler }) {
-  function extractPlatformName(url) {
+function Contest({ contest, onClickHandler }) {
+  function getPlatformLogo(url) {
     const sites = {
       hackerearth: HackerEarth,
       hackerrank: HackerRank,
@@ -51,10 +49,10 @@ function App({ contest, onClickHandler }) {
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
       date
     );
-    return formattedDate.replace(" ", ", ");
+    return formattedDate
   }
 
- function getGoogleCalendarLink(name, start_time_string, end_time_string, url) {
+ function getGCalLink(name, start_time_string, end_time_string, url) {
    // Use regular expression to validate start_time and end_time strings
    const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.000Z$/;
    if (!regex.test(start_time_string) || !regex.test(end_time_string)) {
@@ -81,11 +79,12 @@ function App({ contest, onClickHandler }) {
     <div className="contest">
       <img
         className="contest--platform"
-        src={extractPlatformName(contest.url)}
+        src={getPlatformLogo(contest.url)}
         alt="platform"
       />
+
       <div className="contest--details">
-        <a href={contest.url} className="contest--name">
+        <a href={contest.url} target="_blank" className="contest--name">
           {contest.name}
         </a>
 
@@ -98,17 +97,20 @@ function App({ contest, onClickHandler }) {
         </div>
       </div>
 
-      {contest.status === "CODING" ? (
-        <img className="live" src={Live} alt="live" />
+      {/* if contest is live, show a flickering "live" image else show a notify (bell) button */}
+      {contest.status != "BEFORE" ? (
+        <img className="live contest--status" src={Live} alt="live" />
       ) : (
         <a
-          href={getGoogleCalendarLink(
+          href={getGCalLink(
             contest.name,
             contest.start_time,
             contest.end_time,
             contest.url
             )}
-          target="_blank"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contest--status"
         >
           <img
             // onClick={onClickHandler}
@@ -122,4 +124,4 @@ function App({ contest, onClickHandler }) {
   );
 }
 
-export default App;
+export default Contest;
